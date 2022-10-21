@@ -46,7 +46,7 @@ class Intro extends StatelessWidget {
                     pointsprogression((index == currentScreenNo) ? true : false)
                 ],
               ),
-              const SizedBox(height: 100),
+              const SizedBox(height: 140),
               Text(
                 title,
                 style: TextStyle(
