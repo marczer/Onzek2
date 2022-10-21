@@ -46,6 +46,7 @@ class Intro extends StatelessWidget {
                     pointsprogression((index == currentScreenNo) ? true : false)
                 ],
               ),
+              const SizedBox(height: 100),
               Text(
                 title,
                 style: TextStyle(
@@ -73,18 +74,23 @@ class Intro extends StatelessWidget {
                 SizedBox(
                     height: 50,
                     width: 300,
-                    child: boutton2(title: "Get started", onPressed: () {}))
+                    child: boutton2(title: "Commencer", onPressed: () {}))
               ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                boutton1(title: ("Skip"), onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(),));
-                }
-                ),
+                boutton1(
+                    title: ("Passer"),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyHomePage(),
+                          ));
+                    }),
                 boutton2(
-                  title: "Next",
+                  title: "Continuer",
                   onPressed: () {
                     onNextPressed(currentScreenNo + 1);
                   },
