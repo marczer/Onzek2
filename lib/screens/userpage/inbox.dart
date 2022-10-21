@@ -94,79 +94,95 @@ class _onzekState extends State<onzek> {
       body: Column(
         children: [
           Expanded(
-            child: Column(
-              children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.80,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xffe6f9ff),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text('hey marczer'),
-                    ),
-                  ),
-                Row(
-                  children: [
-                    Container(
-                      child: Text("10.00 PM",style: TextStyle(fontSize: 12),),
+            child: Container(
+              padding: EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.80,
                       ),
-                  ],
-                ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xffe6f9ff),
+                        borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(15.0),
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
 
-                Container(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.80,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xff41CDFB),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text('hey marc'),
-                    ),
-                  ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      child: Text("10.00 PM",style: TextStyle(fontSize: 12),),
+                         ),
                       ),
-                  ],
-                ),
-
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.of(context).size.width * 0.80,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      color: Color(0xffe6f9ff),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text('oui ndkw tu a fini de manger '),
-                    ),
-                  ),
-                Row(
-
-                  children: [
-                    Container(
-                      child: Text("10.00 PM",style: TextStyle(fontSize: 12),),
+                      child: Text('hey marczer'),
                       ),
-                  ],
-                ),
-              ],
+                    ),
+                  Row(
+                    children: [
+                      Container(
+                        child: Text("10.00 PM",style: TextStyle(fontSize: 12),),
+                        ),
+                    ],
+                  ),
+
+                  Container(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.80,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xff41CDFB),
+                        borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15.0),
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
+                         ),
+                      ),
+                      child: Text('hey marc'),
+                      ),
+                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        child: Text("10.00 PM",style: TextStyle(fontSize: 12),),
+                        ),
+                    ],
+                  ),
+
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.80,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xffe6f9ff),
+                        borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(15.0),
+                        bottomLeft: Radius.circular(15.0),
+                        bottomRight: Radius.circular(15.0),
+                         ),
+                      ),
+                      child: Text('oui ndkw tu a fini de manger '),
+                      ),
+                    ),
+                  Row(
+
+                    children: [
+                      Container(
+                        child: Text("10.00 PM",style: TextStyle(fontSize: 12),),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
            Align(
@@ -182,7 +198,7 @@ class _onzekState extends State<onzek> {
         child: Container(
           decoration: BoxDecoration(
             color: Color(0xffe6f9ff),
-            borderRadius: BorderRadius.circular(35.0),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
             children: [
@@ -211,20 +227,20 @@ class _onzekState extends State<onzek> {
         ),
       ),
       SizedBox(width: 15),
-      Container(
-        padding: const EdgeInsets.all(15.0),
-        decoration: BoxDecoration(
-            color: Color(0xff41CDFB), shape: BoxShape.circle
-            ),
-        child: InkWell(
-          child: Icon(
-            Icons.keyboard_voice_outlined,
-            color: Colors.white,
-          ),
-          onLongPress: () {
-          },
+        Container(
+          padding: const EdgeInsets.all(15.0),
+          decoration: BoxDecoration(
+              color: Color(0xff41CDFB), shape: BoxShape.circle
+              ),
+              child: InkWell(
+                child: Icon(
+                  Icons.keyboard_voice_outlined,
+                  color: Colors.white,
+                ),
+                onLongPress: () {
+                },
+              ),
         ),
-      )
     ],
   ),
             ),

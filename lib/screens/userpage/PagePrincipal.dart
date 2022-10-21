@@ -17,9 +17,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: DefaultTabController(
-        
         length: 2,
         child: Container(
+        margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
         padding: EdgeInsets.all(10),
         color: Color(0xfff9f9f9),
         child: Column(
@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ]
               ),
             ),
+            SizedBox(height: 20,),
             Expanded(
               child: Container(
                 child: TabBarView(
@@ -67,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ],
                              ),
                            ),
+                          SizedBox(height: 20,),
                           const personcompte(
                               image: "assets/images/lezer.jpeg",
                               username: 'Oula Marc Viera',
