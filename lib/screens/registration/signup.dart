@@ -20,11 +20,11 @@ class _signupState extends State<signup> {
     var largeur = queryData.size.width;
     var hauteur = queryData.size.height;
     return Scaffold(
+      backgroundColor: Color(0xfff9f9f9),
       body: SingleChildScrollView(
         child: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(color: Colors.grey.shade200),
               padding: EdgeInsets.only(
                   bottom: 10,
                   left: largeur * 0.04,
@@ -34,7 +34,7 @@ class _signupState extends State<signup> {
                 children: [
                   const Center(
                     child: Text(
-                      "Signup",
+                      "Se connecter",
                       style: TextStyle(
                           fontSize: 20,
                           color: Color(0xff333333),
@@ -48,6 +48,7 @@ class _signupState extends State<signup> {
                     height: hauteur * 0.06,
                     child: textfield(
                       label: "Email*",
+                      textvisible: false,
                     ),
                   ),
                   SizedBox(
@@ -56,7 +57,8 @@ class _signupState extends State<signup> {
                   Container(
                     height: hauteur * 0.06,
                     child: textfield(
-                      label: "Number*",
+                      label: "Numero",
+                      textvisible: false,
                     ),
                   ),
                   SizedBox(
@@ -65,7 +67,8 @@ class _signupState extends State<signup> {
                   Container(
                     height: hauteur * 0.06,
                     child: textfield(
-                      label: "Create password",
+                      label: "Creer mot de passe*",
+                      textvisible: false,
                     ),
                   ),
                   SizedBox(
@@ -74,14 +77,19 @@ class _signupState extends State<signup> {
                   Container(
                     height: hauteur * 0.06,
                     child: textfield(
-                      label: "Confirm password",
+                      label: "Confirmer mot de passe*",
+                      textvisible: false,
                     ),
                   ),
                   Container(
                     child: Row(
                       children: [
                         Checkbox(
-                          activeColor: const Color.fromARGB(255, 68, 218, 255),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6)),
+                          checkColor: Colors.black45,
+                          activeColor: Colors.transparent,
+                          autofocus: true,
                           value: check,
                           onChanged: (bool? value) {
                             setState(() {
@@ -89,36 +97,42 @@ class _signupState extends State<signup> {
                             });
                           },
                         ),
-                        const Text('Remember me'),
+                        const Text(
+                          'Se souvenir de moi',
+                          style: TextStyle(color: Colors.black45),
+                        ),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: hauteur * 0.01,
                   ),
-                  largebutton(text: 'LOGIN'),
+                  largebutton(text: 'CONNEXION'),
                   SizedBox(
-                    height: hauteur * 0.015,
+                    height: hauteur * 0.02,
                   ),
                   const Text(
-                    "OR continue with",
+                    "Ou continuer avec",
                     style: TextStyle(fontSize: 16, color: Colors.black45),
                   ),
                   SizedBox(
-                    height: hauteur * 0.005,
+                    height: hauteur * 0.02,
                   ),
                   transbutton(
                       image: 'assets/images/google.png', text: 'Google'),
+                  SizedBox(
+                    height: hauteur * 0.02,
+                  ),
                   transbutton(
                       image: 'assets/images/facebook.png', text: 'Facebook'),
                   SizedBox(
-                    height: hauteur * 0.12,
+                    height: hauteur * 0.07,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Don't have Account?",
+                        "Vous avez deja un compte?",
                         style: TextStyle(fontSize: 15, color: Colors.black45),
                       ),
                       TextButton(
@@ -129,7 +143,7 @@ class _signupState extends State<signup> {
                                   builder: (context) => MyHomePage(),
                                 ));
                           },
-                          child: const Text("Login"))
+                          child: const Text("Se connecter"))
                     ],
                   ),
                 ],
