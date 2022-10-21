@@ -14,10 +14,17 @@ class largebutton extends StatelessWidget {
     var largeur = queryData.size.width;
     var hauteur = queryData.size.height;
     return Container(
+      height: hauteur * 0.06,
       width: double.infinity,
       child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage(title: '',),));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyHomePage(
+                    title: '',
+                  ),
+                ));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF41cdfb),
@@ -43,6 +50,7 @@ class transbutton extends StatelessWidget {
     var hauteur = queryData.size.height;
     return Container(
       width: double.infinity,
+      height: hauteur * 0.06,
       child: OutlinedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.grey.shade100,
@@ -53,7 +61,7 @@ class transbutton extends StatelessWidget {
         child: Row(
           children: [
             Image(
-              height: 22,
+              height: 18,
               image: AssetImage(
                 image,
               ),
