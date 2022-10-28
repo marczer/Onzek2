@@ -30,7 +30,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   grouped_list: ^5.1.2
   intl: ^0.17.0
-  image_picker: ^0.8.6
+  image_picker: ^0.8.
+  firebase_auth: ^4.0.2
+  cloud_firestore: ^4.0.2
+  firebase_core: ^2.1.0
+  firebase_database: ^10.0.2
+  firebase_storage: ^11.0.2
   
 
   
