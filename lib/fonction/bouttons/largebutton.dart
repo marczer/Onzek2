@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/userpage/PagePrincipal.dart';
+import '../../screens/userpage/Acceuil.dart';
 
 class largebutton extends StatelessWidget {
   final String text;
-
-  largebutton({required this.text});
+  final VoidCallback? onPressed;
+  final String? color;
+  largebutton({required this.text, this.onPressed, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +18,7 @@ class largebutton extends StatelessWidget {
       height: hauteur * 0.06,
       width: double.infinity,
       child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MyHomePage(
-                    title: '',
-                  ),
-                ));
-          },
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xFF41cdfb),
             shape:
@@ -38,9 +31,10 @@ class largebutton extends StatelessWidget {
 
 class transbutton extends StatelessWidget {
   final String image;
+  final VoidCallback? onPressed;
   final String text;
 
-  transbutton({required this.image, required this.text});
+  transbutton({required this.image, required this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +51,7 @@ class transbutton extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Row(
           children: [
             Image(

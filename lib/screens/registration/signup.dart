@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:onzek/screens/registration/home.dart';
 import 'package:onzek/screens/registration/login.dart';
 import 'package:onzek/fonction/bouttons/largebutton.dart';
 import 'package:onzek/fonction/textformfield.dart';
+import 'package:onzek/service/firebasehelper.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -12,6 +15,10 @@ class signup extends StatefulWidget {
 
 class _signupState extends State<signup> {
   bool check = false;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _nom = TextEditingController();
+  final _prenom = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +56,7 @@ class _signupState extends State<signup> {
                     child: textfield(
                       label: "Email*",
                       textvisible: false,
+                      TextEditingController: _emailController,
                     ),
                   ),
                   SizedBox(
@@ -57,8 +65,20 @@ class _signupState extends State<signup> {
                   Container(
                     height: hauteur * 0.06,
                     child: textfield(
-                      label: "Numero",
+                      label: "Nom",
                       textvisible: false,
+                      TextEditingController: _nom,
+                    ),
+                  ),
+                  SizedBox(
+                    height: hauteur * 0.025,
+                  ),
+                  Container(
+                    height: hauteur * 0.06,
+                    child: textfield(
+                      label: "Prenom",
+                      textvisible: false,
+                      TextEditingController: _prenom,
                     ),
                   ),
                   SizedBox(
@@ -69,17 +89,11 @@ class _signupState extends State<signup> {
                     child: textfield(
                       label: "Creer mot de passe*",
                       textvisible: false,
+                      TextEditingController: _passwordController,
                     ),
                   ),
                   SizedBox(
                     height: hauteur * 0.025,
-                  ),
-                  Container(
-                    height: hauteur * 0.06,
-                    child: textfield(
-                      label: "Confirmer mot de passe*",
-                      textvisible: false,
-                    ),
                   ),
                   Container(
                     child: Row(
@@ -107,7 +121,10 @@ class _signupState extends State<signup> {
                   SizedBox(
                     height: hauteur * 0.01,
                   ),
-                  largebutton(text: 'CONNEXION'),
+                  largebutton(
+                    text: 'CONNEXION',
+                    onPressed: register,
+                  ),
                   SizedBox(
                     height: hauteur * 0.02,
                   ),
@@ -140,7 +157,7 @@ class _signupState extends State<signup> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => connection(),
                                 ));
                           },
                           child: const Text("Se connecter"))
@@ -153,5 +170,31 @@ class _signupState extends State<signup> {
         ),
       ),
     );
+  }
+
+  register() {
+    if (_emailController.text != "") {
+      if (_nom.text != "") {
+        if (_passwordController.text != "") {
+          if (_prenom.text != "") {
+            FirebaseHelper()
+                .create(_emailController.text, _passwordController.text,
+                    _prenom.text, _nom.text)
+                .then((value) {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => homeuser()));
+            });
+          } else {
+            print("Prenom vide");
+          }
+        } else {
+          print("Mot de pass vide");
+        }
+      } else {
+        print("Numero vide!!");
+      }
+    } else {
+      print("Email vide!!");
+    }
   }
 }

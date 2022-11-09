@@ -63,7 +63,7 @@ class Intro extends StatelessWidget {
                   style: TextStyle(fontSize: 15, color: Colors.grey),
                 ),
               ),
-              const SizedBox(height: 200),
+              const SizedBox(height: 100),
             ],
           ),
           Visibility(
@@ -86,7 +86,7 @@ class Intro extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => MyHomePage(),
+                            builder: (context) => connection(),
                           ));
                     }),
                 boutton2(
