@@ -1,11 +1,16 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:onzek/fonction/bouttons/snackbar.dart';
 import 'package:onzek/service/usermodel.dart';
 
 class FirebaseHelper {
   final auth = FirebaseAuth.instance;
+  // final GoogleSignIn = GoogleSignIn
 
   //Authentification d'un user
   Future<User?> handleSignIn(String mail, String mdp) async {
@@ -15,7 +20,55 @@ class FirebaseHelper {
     return user;
   }
 
+  Future<void> signInWithGoogle() async {
+    try {
+      if (kIsWeb) {
+        GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+        googleProvider
+            .addScope('https://www.googleapis.com/auth/contacts.readonly');
+
+        await auth.signInWithPopup(googleProvider);
+      } else {
+        final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+        final GoogleSignInAuthentication? googleAuth =
+            await googleUser?.authentication;
+
+        if (googleAuth?.accessToken != null && googleAuth?.idToken != null) {
+          // Create a new credential
+          final credential = GoogleAuthProvider.credential(
+            accessToken: googleAuth?.accessToken,
+            idToken: googleAuth?.idToken,
+          );
+          User? user = (await auth.signInWithCredential(credential)).user;
+
+          String uid = user!.uid;
+          Map<String, String> map = {
+            "prenoms": user.displayName!,
+            "nom": user.displayName!,
+            "uid": uid,
+            "imageUrl": user.photoURL!
+          };
+          addUser(uid, map);
+          // if you want to do specific task like storing information in firestore
+          // only for new users using google sign in (since there are no two options
+          // for google sign in and google sign up, only one as of now),
+          // do the following:
+
+          // if (userCredential.user != null) {
+          //   if (userCredential.additionalUserInfo!.isNewUser) {}
+          // }
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      // showSnackBar( e.message!); // Displaying the error message
+    }
+  }
+
   Future<bool> handleLogOut() async {
+    await GoogleSignIn().signOut();
     await auth.signOut();
     return true;
   }
