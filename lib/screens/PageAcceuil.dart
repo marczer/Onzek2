@@ -1,13 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:onzek/fonction/Intro.dart';
+import 'package:onzek/screens/registration/home.dart';
+import 'package:onzek/screens/userpage/Acceuil.dart';
 
 // ignore: must_be_immutable
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key, required String title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key? key, required String title}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   PageController controller = PageController(initialPage: 0);
 
   @override
+  void initState() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print("Pas d'utilisateur connecté!");
+      } else {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MyHomePage(
+                      title: '',
+                    )));
+      }
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFf9f9f9),

@@ -24,6 +24,71 @@ class _MonCompteState extends State<MonCompte> {
   final _prenoms = TextEditingController();
   final User? user = FirebaseHelper().auth.currentUser;
   MyUser? me;
+
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text(
+                'Modifier photo de profil',
+                textAlign: TextAlign.center,
+              ),
+              content: Container(
+                height: 400,
+                width: 300,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 200,
+                      width: 150,
+                      child: CustomImage(
+                        color: Colors.black.withOpacity(0.1),
+                        imageUrl: me?.imageUrl,
+                        initiales: me?.initiales,
+                        radius: 50,
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MaterialButton(
+                          color: Colors.blue,
+                          onPressed: () {
+                            _takeApic(ImageSource.camera);
+                          },
+                          child: Text(
+                            'prendre une photo',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        MaterialButton(
+                          color: Colors.blue,
+                          onPressed: () {
+                            _takeApic(ImageSource.gallery);
+                          },
+                          child: Text(
+                            'importer une image',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("Close"))
+                  ],
+                ),
+              ));
+        });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -52,49 +117,80 @@ class _MonCompteState extends State<MonCompte> {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            width: 130,
-                            height: 130,
-                            child: CustomImage(
-                              color: Color(0XFFEA5863),
-                              imageUrl: me!.imageUrl,
-                              initiales: me!.initiales,
-                              radius: 20,
+                          Center(
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 130,
+                                  height: 130,
+                                  child: CustomImage(
+                                    color: Colors.black.withOpacity(0.1),
+                                    imageUrl: me?.imageUrl,
+                                    initiales: me?.initiales,
+                                    radius: 50,
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        width: 4,
+                                        color: Colors.white,
+                                      ),
+                                      color: Color(0xff41CDFB),
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        _showDialog();
+                                      },
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              IconButton(
-                                iconSize: 35,
-                                color: Color(0xff41CDFB),
-                                onPressed: () {
-                                  _takeApic(ImageSource.camera);
-                                },
-                                icon: Icon(Icons.camera_enhance),
-                              ),
-                              IconButton(
-                                iconSize: 35,
-                                color: Color(0xff41CDFB),
-                                onPressed: () {
-                                  _takeApic(ImageSource.gallery);
-                                },
-                                icon: Icon(Icons.photo_album),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //   children: [
+                          //     IconButton(
+                          //       iconSize: 35,
+                          //       color: Color(0xff41CDFB),
+                          //       onPressed: () {
+                          //         _takeApic(ImageSource.camera);
+                          //       },
+                          //       icon: Icon(Icons.camera_enhance),
+                          //     ),
+                          //     IconButton(
+                          //       iconSize: 35,
+                          //       color: Color(0xff41CDFB),
+                          //       onPressed: () {
+                          //         _takeApic(ImageSource.gallery);
+                          //       },
+                          //       icon: Icon(Icons.photo_album),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       )
                     ],
                   ),
                 ),
                 SizedBox(height: 30),
-                textfield2(hinttext: me!.nom, TextEditingController: _nom),
+                textfield2(hinttext: me?.nom, TextEditingController: _nom),
                 SizedBox(
                   height: 15,
                 ),
                 textfield2(
-                    hinttext: me!.prenoms, TextEditingController: _prenoms),
+                    hinttext: me?.prenoms, TextEditingController: _prenoms),
                 SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

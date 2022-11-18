@@ -20,6 +20,7 @@ class _contactState extends State<contact> {
   Widget build(BuildContext context) {
     var largeur = MediaQuery.of(context).size.width;
     var hauteur = MediaQuery.of(context).size.height;
+
     return Container(
         height: hauteur,
         width: largeur * 0.9,
@@ -76,7 +77,8 @@ class _contactState extends State<contact> {
                   //     icon: Icon(Icons.message),
                   //   ),
 
-                  // )
+                  // )  var nom = newUser.prenoms +
+
                   Card(
                     color: Color(0xffe6f9ff),
                     // margin: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
@@ -98,8 +100,11 @@ class _contactState extends State<contact> {
                         },
                         child: Row(
                           children: [
-                            Text(newUser.nom),
-                            Text(newUser.prenoms),
+                            Container(
+                                width: 100,
+                                child:
+                                    Text(newUser.nom + "${newUser.prenoms}")),
+                            // Text("${newUser.prenoms.length < 10}"),
                           ],
                         ),
                       ),

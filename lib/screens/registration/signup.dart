@@ -4,6 +4,7 @@ import 'package:onzek/screens/registration/home.dart';
 import 'package:onzek/screens/registration/login.dart';
 import 'package:onzek/fonction/bouttons/largebutton.dart';
 import 'package:onzek/fonction/textformfield.dart';
+import 'package:onzek/screens/userpage/Acceuil.dart';
 import 'package:onzek/service/firebasehelper.dart';
 
 class signup extends StatefulWidget {
@@ -182,7 +183,11 @@ class _signupState extends State<signup> {
                     _prenom.text, _nom.text)
                 .then((value) {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => homeuser()));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MyHomePage(
+                            title: '',
+                          )));
             });
           } else {
             print("Prenom vide");

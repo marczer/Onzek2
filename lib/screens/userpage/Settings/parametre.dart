@@ -1,4 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:onzek/screens/registration/home.dart';
+import 'package:onzek/screens/registration/login.dart';
+import 'package:onzek/service/firebasehelper.dart';
+import 'package:onzek/service/usermodel.dart';
 
 import '../Acceuil.dart';
 import 'myprofilpage.dart';
@@ -18,6 +23,15 @@ final ButtonStyle style = ElevatedButton.styleFrom(
     backgroundColor: Color(0xff41CDFB));
 
 class _paraState extends State<para> {
+  MyUser? me;
+  final User? user = FirebaseHelper().auth.currentUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,41 +87,21 @@ class _paraState extends State<para> {
               ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
             child: Card(
               color: Color(0xffe6f9ff),
               // margin: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
               child: ListTile(
-                leading: Text('longuage'),
-                trailing: Icon(Icons.arrow_forward, color: Color(0xff41CDFB)),
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: Card(
-              color: Color(0xffe6f9ff),
-              // margin: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-              child: ListTile(
-                leading: Text('notification'),
-                trailing: Icon(Icons.arrow_forward, color: Color(0xff41CDFB)),
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: Card(
-              color: Color(0xffe6f9ff),
-              // margin: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-              child: ListTile(
-                leading: Text('Dark theme'),
-                trailing: Icon(Icons.arrow_forward, color: Color(0xff41CDFB)),
+                leading: Text('Deconnexion'),
+                trailing: IconButton(
+                    onPressed: _logout,
+                    icon: Icon(Icons.arrow_forward, color: Color(0xff41CDFB))),
               ),
             ),
           ),
           SizedBox(
-            height: 200,
+            height: MediaQuery.of(context).size.height * 0.55,
           ),
           Container(
             width: 150,
@@ -127,5 +121,29 @@ class _paraState extends State<para> {
         ],
       ),
     ));
+  }
+
+  _getUser() {
+    FirebaseHelper().getUser(user!.uid).then((me) {
+      setState(() {
+        this.me = me;
+      });
+    });
+  }
+
+  _logout() {
+    FirebaseHelper()
+        .handleLogOut()
+        .then((user) => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => connection(
+                            title: '',
+                          )))
+            })
+        .catchError((error) {
+      print(error);
+    });
   }
 }

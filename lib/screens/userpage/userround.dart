@@ -22,9 +22,9 @@ class _contactState extends State<contact2> {
     var hauteur = MediaQuery.of(context).size.height;
     return Container(
         height: 80,
-        width: 80,
         margin: EdgeInsets.only(left: 15, right: 15),
         child: FirebaseAnimatedList(
+          scrollDirection: Axis.horizontal,
           query: FirebaseHelper.userEntry,
           sort: (a, b) => (a
               .child('prenoms')
@@ -40,16 +40,26 @@ class _contactState extends State<contact2> {
             } else {
               return SizedBox(
                 height: 60,
-                width: largeur * 0.9,
+                width: 50,
                 child: ListView(scrollDirection: Axis.horizontal,
                     // height: 60,
                     // width: 60,
                     children: [
-                      CustomImage(
-                        color: Color(0XFFEA5863),
-                        imageUrl: newUser.imageUrl,
-                        initiales: newUser.initiales,
-                        radius: 20,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return ChatController(
+                              partenaire: newUser,
+                            );
+                          }));
+                        },
+                        child: CustomImage(
+                          color: Color(0XFFEA5863),
+                          imageUrl: newUser.imageUrl,
+                          initiales: newUser.initiales,
+                          radius: 25,
+                        ),
                       ),
                     ]
                     // ListTile(

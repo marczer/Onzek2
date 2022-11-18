@@ -37,10 +37,10 @@ class _ChatControllerState extends State<ChatController> {
         automaticallyImplyLeading: true,
         centerTitle: true,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             CustomImage(
-              color: Color(0XFFEA5863),
+              color: Color(0xff41CDFB),
               imageUrl: widget.partenaire.imageUrl,
               initiales: widget.partenaire.initiales,
               radius: 20,

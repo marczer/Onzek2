@@ -22,16 +22,16 @@ class _MyHomePageState extends State<connection> {
   final _passwordController = TextEditingController();
 
   @override
-  void initState() {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print("Pas d'utilisateur connecté!");
-      } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => homeuser()));
-      }
-    });
-  }
+  // void initState() {
+  //   FirebaseAuth.instance.authStateChanges().listen((User? user) {
+  //     if (user == null) {
+  //       print("Pas d'utilisateur connecté!");
+  //     } else {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => homeuser()));
+  //     }
+  //   });
+  // }
 
   Widget build(BuildContext context) {
     MediaQueryData queryData;
@@ -163,8 +163,12 @@ class _MyHomePageState extends State<connection> {
         FirebaseHelper()
             .handleSignIn(_emailController.text, _passwordController.text)
             .then((user) => {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => homeuser()))
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MyHomePage(
+                                title: '',
+                              )))
                 })
             .catchError((error) {
           print(error);
