@@ -35,7 +35,7 @@ class _contactState extends State<contact2> {
           itemBuilder: (BuildContext ctx, DataSnapshot snap,
               Animation<double> animation, int index) {
             MyUser newUser = MyUser(snap);
-            if (FirebaseHelper().auth.currentUser!.uid == newUser.uid) {
+            if (FirebaseHelper().auth.currentUser?.uid == newUser.uid) {
               return Container();
             } else {
               return SizedBox(
@@ -54,11 +54,13 @@ class _contactState extends State<contact2> {
                             );
                           }));
                         },
-                        child: CustomImage(
-                          color: Color(0XFFEA5863),
-                          imageUrl: newUser.imageUrl,
-                          initiales: newUser.initiales,
-                          radius: 25,
+                        child: AbsorbPointer(
+                          child: CustomImage(
+                            color: Color(0XFFEA5863),
+                            imageUrl: newUser.imageUrl,
+                            initiales: newUser.initiales,
+                            radius: 25,
+                          ),
                         ),
                       ),
                     ]

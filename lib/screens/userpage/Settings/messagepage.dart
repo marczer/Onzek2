@@ -30,63 +30,69 @@ class _MessageControllerState extends State<MessageController> {
             Conversation conversation = Conversation(snap);
             String sub = (conversation.uid == uid) ? "Moi : " : "";
             sub += ("${conversation.msg}");
-            return Padding(
-              padding: const EdgeInsets.only(top: 2.0),
-              child: Column(
-                children: [
-                  Card(
-                    color: Color(0xffe6f9ff),
-                    child: ListTile(
-                      leading: CustomImage(
-                        color: Color(0XFFEA5863),
-                        imageUrl: conversation.user!.imageUrl,
-                        initiales: conversation.user!.initiales,
-                        radius: 20,
-                      ),
-                      title: Text(conversation.user!.nom),
-                      subtitle: Text(sub),
-                      trailing: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child:
-                                Text(DateHelper().convert(conversation.date!)),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 5.0),
-                            child: CircleAvatar(
-                                backgroundColor: Color(0xff41CDFB),
-                                radius: 8,
-                                child: Text(
-                                  "1",
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.white),
-                                )),
-                          ),
-                        ],
-                      ),
-                      onTap: () async {
-                        Future.delayed(Duration(milliseconds: 3000), () async {
-                          await Navigator.of(context).push(
-                              MaterialPageRoute(builder: (BuildContext ctx) {
-                            return ChatController(
-                                partenaire: conversation.user!);
-                          }));
-                        });
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 1,
-                      color: Colors.grey,
-                    ),
+            return (conversation.msg != null)
+                ? Center(
+                    child: Text("Accun message"),
                   )
-                ],
-              ),
-            );
+                : Padding(
+                    padding: const EdgeInsets.only(top: 2.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          color: Color(0xffe6f9ff),
+                          child: ListTile(
+                            leading: CustomImage(
+                              color: Color(0XFFEA5863),
+                              imageUrl: conversation.user!.imageUrl,
+                              initiales: conversation.user!.initiales,
+                              radius: 20,
+                            ),
+                            title: Text("${conversation.user!.nom}"),
+                            subtitle: Text(sub),
+                            trailing: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text(
+                                      DateHelper().convert(conversation.date!)),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5.0),
+                                  child: CircleAvatar(
+                                      backgroundColor: Color(0xff41CDFB),
+                                      radius: 8,
+                                      child: Text(
+                                        "1",
+                                        style: TextStyle(
+                                            fontSize: 12, color: Colors.white),
+                                      )),
+                                ),
+                              ],
+                            ),
+                            onTap: () async {
+                              Future.delayed(Duration(milliseconds: 5),
+                                  () async {
+                                await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext ctx) {
+                                  return ChatController(
+                                      partenaire: conversation.user!);
+                                }));
+                              });
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 1,
+                            color: Colors.grey,
+                          ),
+                        )
+                      ],
+                    ),
+                  );
           }),
     );
   }

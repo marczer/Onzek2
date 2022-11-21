@@ -9,8 +9,8 @@ import 'package:onzek/service/usermodel.dart';
 import '../../service/message_model.dart';
 
 class ZoneDeTexte extends StatefulWidget {
-  final MyUser partenaire;
-  final MyUser me;
+  final partenaire;
+  final me;
   const ZoneDeTexte({Key? key, required this.partenaire, required this.me})
       : super(key: key);
 
@@ -42,7 +42,10 @@ class _ZoneDeTexteState extends State<ZoneDeTexte> {
             ),
           ),
           IconButton(
-              onPressed: () => _sendButtonPressed(), icon: Icon(Icons.send)),
+              onPressed: () {
+                _sendButtonPressed();
+              },
+              icon: Icon(Icons.send)),
         ],
       ),
     );

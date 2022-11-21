@@ -36,6 +36,7 @@ dependencies:
   firebase_storage: ^11.0.2
   cached_network_image: ^3.2.2
   google_sign_in: ^5.4.2
+  getwidget: ^3.0.1
   
 
   

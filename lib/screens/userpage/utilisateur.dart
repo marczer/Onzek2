@@ -101,9 +101,11 @@ class _contactState extends State<contact> {
                         child: Row(
                           children: [
                             Container(
-                                width: 100,
-                                child:
-                                    Text(newUser.nom + "${newUser.prenoms}")),
+                                width: 150,
+                                child: Text(
+                                  newUser.nom! + " ${newUser.prenoms}",
+                                  style: TextStyle(letterSpacing: 0.9),
+                                )),
                             // Text("${newUser.prenoms.length < 10}"),
                           ],
                         ),

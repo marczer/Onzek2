@@ -85,6 +85,14 @@ class FirebaseHelper {
     return user;
   }
 
+  Future<bool> Resetpassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
   // database
 
   // le point d'entré de la bd

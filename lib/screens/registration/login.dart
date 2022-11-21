@@ -9,6 +9,8 @@ import 'package:onzek/fonction/textformfield.dart';
 import 'package:onzek/screens/userpage/Acceuil.dart';
 import 'package:onzek/service/firebasehelper.dart';
 
+import 'resetpassword.dart';
+
 class connection extends StatefulWidget {
   const connection({super.key, String? title});
 
@@ -82,24 +84,17 @@ class _MyHomePageState extends State<connection> {
                           TextEditingController: _passwordController)),
                   Container(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Checkbox(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                          checkColor: Colors.black45,
-                          activeColor: Colors.transparent,
-                          autofocus: true,
-                          value: check,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              check = value!;
-                            });
-                          },
-                        ),
-                        const Text(
-                          'Se souvenir de moi',
-                          style: TextStyle(color: Colors.black45),
-                        ),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const Resetpass(),
+                                  ));
+                            },
+                            child: Text("Mot de pass oublié?"))
                       ],
                     ),
                   ),
