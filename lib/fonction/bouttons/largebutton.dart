@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../screens/userpage/Acceuil.dart';
-
 class largebutton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -12,7 +10,6 @@ class largebutton extends StatelessWidget {
   Widget build(BuildContext context) {
     MediaQueryData queryData;
     queryData = MediaQuery.of(context);
-    var largeur = queryData.size.width;
     var hauteur = queryData.size.height;
     return Container(
       height: hauteur * 0.06,

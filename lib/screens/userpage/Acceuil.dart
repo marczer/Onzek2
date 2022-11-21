@@ -170,19 +170,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            // floatingActionButton: FloatingActionButton(
-            //   onPressed: () {
-            //     var snackBar = SnackBar(
-            //       duration: Duration(seconds: 10),
-            //       backgroundColor: Colors.white,
-            //       // width: largeur * 0.8,
-            //       content: contact(),
-            //     );
-            //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            //   },
-            //   child: Icon(Icons.message),
-            //   backgroundColor: Color(0xff41CDFB),
-            // ),
           );
   }
 
@@ -191,22 +178,6 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         this.me = me;
       });
-    });
-  }
-
-  _logout() {
-    FirebaseHelper()
-        .handleLogOut()
-        .then((user) => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => connection(
-                            title: '',
-                          )))
-            })
-        .catchError((error) {
-      print(error);
     });
   }
 }

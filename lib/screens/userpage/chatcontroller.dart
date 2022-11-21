@@ -92,7 +92,9 @@ class _ChatControllerState extends State<ChatController> {
                                 // ListTile(title: Text(msg.text!));
                               })
                           : Center(
-                              child: Text("Chargement..."),
+                              child: GFLoader(
+                                type: GFLoaderType.ios,
+                              ),
                             )),
                   Divider(
                     height: 2,

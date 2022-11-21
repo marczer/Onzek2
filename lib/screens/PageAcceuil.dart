@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:onzek/fonction/Intro.dart';
-import 'package:onzek/screens/registration/home.dart';
 import 'package:onzek/screens/userpage/Acceuil.dart';
 
 // ignore: must_be_immutable
